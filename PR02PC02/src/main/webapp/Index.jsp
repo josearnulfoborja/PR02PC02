@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro de Usuario</title>
+  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <link rel="stylesheet" href="estilos.css">
+
 </head>
 <body>
 
@@ -13,9 +16,12 @@
     <input type="email" id="correo" placeholder="Correo electrónico" required>
     <input type="text" id="telefono" placeholder="Teléfono" required>
     <input type="password" id="password" placeholder="Contraseña" required>
+    <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+    <div id="captchaContainer"></div>
+    <input type="text" id="captchaRespuesta" placeholder="Resuelve el captcha" required>
     <button type="button" id="registrarse">Registrarse</button>
   </form>
 
-  <script src="registro.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

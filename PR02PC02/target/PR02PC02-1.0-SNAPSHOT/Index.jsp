@@ -1,36 +1,27 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Página JSP con Botones</title>
-    <style>
-        #miDiv {
-            width: 300px;
-            height: 100px;
-            background-color: #f0f0f0;
-            margin: 20px 0;
-            display: none;
-            padding: 20px;
-        }
-    </style>
-    <script>
-        function mostrarDiv() {
-            document.getElementById('miDiv').style.display = 'block';
-        }
-        function eliminarDiv() {
-            var div = document.getElementById('miDiv');
-            if (div) {
-                div.parentNode.removeChild(div);
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>Registro de Usuario</title>
+  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <link rel="stylesheet" href="estilos.css">
+
 </head>
 <body>
-    <h1>Ejemplo JSP con Botones</h1>
-    <button onclick="mostrarDiv()">Mostrar Div</button>
-    <button onclick="eliminarDiv()">Eliminar Div</button>
-    <div id="miDiv">
-        <p>Este es el contenido del div.</p>
-    </div>
+
+  <form id="formRegistro">
+    <h2>Registro de Usuario</h2>
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="apellido" placeholder="Apellido" required>
+    <input type="email" id="correo" placeholder="Correo electrónico" required>
+    <input type="text" id="telefono" placeholder="Teléfono" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+    <div id="captchaContainer"></div>
+    <input type="text" id="captchaRespuesta" placeholder="Resuelve el captcha" required>
+    <button type="button" id="registrarse">Registrarse</button>
+  </form>
+
+  <script src="app.js"></script>
 </body>
 </html>
