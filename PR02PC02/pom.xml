@@ -146,6 +146,37 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Tomcat Maven Plugin para desarrollo -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8080</port>
+                    <path>/PR02PC02</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <systemProperties>
+                        <java.util.logging.config.file>src/main/resources/logging.properties</java.util.logging.config.file>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            
+            <!-- Jetty Plugin como alternativa -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>11.0.15</version>
+                <configuration>
+                    <webApp>
+                        <contextPath>/PR02PC02</contextPath>
+                    </webApp>
+                    <httpConnector>
+                        <port>8080</port>
+                    </httpConnector>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
