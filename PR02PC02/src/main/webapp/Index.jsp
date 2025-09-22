@@ -9,7 +9,7 @@
 <body>
     <div class="form-container">
         <h2>Registro de Usuario</h2>
-        <form>
+    <form id="registroForm">
             <!-- Nombre -->
             <div class="input-group">
                 <span class="icon">
@@ -152,7 +152,7 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="sj/efectos.js"></script>
+    <script src="app.js"></script>
 
 </body>
 </html>
