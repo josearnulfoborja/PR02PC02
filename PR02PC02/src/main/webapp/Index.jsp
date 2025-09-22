@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <div class="form-container">
@@ -73,7 +73,6 @@
                 <input type="tel" placeholder="Teléfono" required>
             </div>
 
-            <!-- Contraseña -->
             <!-- Contraseña -->
             <div class="input-group password-group">
                 <span class="icon">
@@ -153,7 +152,7 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="efectos.js"></script>
+    <script src="sj/efectos.js"></script>
 
 </body>
 </html>
