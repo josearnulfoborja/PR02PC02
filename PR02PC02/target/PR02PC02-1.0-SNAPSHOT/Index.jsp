@@ -9,7 +9,7 @@
 <body>
     <div class="form-container">
         <h2>Registro de Usuario</h2>
-        <form>
+    <form id="registroForm">
             <!-- Nombre -->
             <div class="input-group">
                 <span class="icon">
@@ -73,7 +73,6 @@
                 <input type="tel" placeholder="Teléfono" required>
             </div>
 
-            <!-- Contraseña -->
             <!-- Contraseña -->
             <div class="input-group password-group">
                 <span class="icon">
@@ -153,7 +152,8 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="sj/efectos.js"></script>
+    <script src="sj/app.js"></script>
+    <script src="sj/app.js"></script>
 
 </body>
 </html>

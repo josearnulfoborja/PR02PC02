@@ -152,7 +152,8 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="sj/app.js"></script>
+    <script src="sj/app.js"></script>
 
 </body>
 </html>
