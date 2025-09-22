@@ -494,7 +494,7 @@
             usuario.clave = document.getElementById('clave').value;
             const confirmarClave = document.getElementById('confirmarClave').value;
             const captcha = document.getElementById('captcha').value;
-            
+
             // Validar campos
             if (!usuario.validarTodos(confirmarClave, captcha)) {
                 // Mostrar error específico según el campo que falló
@@ -517,12 +517,14 @@
                 }
                 return;
             }
-            
+
             // Formatear nombre y apellido
             usuario.formatearNombre().formatearApellido();
-            
+
+            urlSrvUsuario = 'http://localhost:8080/parcial02/SrvUsuario'
+
             // Enviar datos al servlet usando Fetch API
-            fetch('SrvUsuario', {
+            fetch(urlSrvUsuario, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
