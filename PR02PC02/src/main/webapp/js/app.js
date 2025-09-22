@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             telefono: inputs[3].value,
             password: inputs[4].value
         };
-        fetch('rest/registro', {
+        fetch('rest/usuarios/registro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
