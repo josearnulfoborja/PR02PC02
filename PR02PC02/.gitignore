@@ -21,7 +21,10 @@
 
 # virtual machine crash logs, see http://www.oracle.com/technetwork/java/javase/crashes/
 hs_err_pid*
+<<<<<<< HEAD
 replay_pid*
+=======
+>>>>>>> dev
 
 # Maven
 target/
@@ -66,6 +69,7 @@ build/
 # Windows
 Thumbs.db
 ehthumbs.db
+<<<<<<< HEAD
 Desktop.ini
 
 # JetBrains IDEs
@@ -90,3 +94,6 @@ logs/
 
 # Application specific
 # Puedes agregar aquí archivos específicos de tu aplicación
+=======
+Desktop.ini
+>>>>>>> dev
