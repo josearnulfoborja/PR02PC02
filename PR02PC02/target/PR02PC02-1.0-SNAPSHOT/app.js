@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const capitalizarTexto = texto =>
     texto.trim().charAt(0).toUpperCase() + texto.trim().slice(1).toLowerCase();
 
+  function capitalizarCadaPalabra(texto) {
+    return texto
+      .trim()
+      .split(/\s+/)
+      .map(palabra => palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase())
+      .join(' ');
+  }
+
   const limpiarEspacios = texto => texto.replace(/\s+/g, "");
 
   const validarCorreo = correo => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
@@ -37,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Evento en botón REGISTRARSE con arrow function
   document.getElementById("registrarse").addEventListener("click", (event) => {
     event.preventDefault(); // Evita el submit y recarga
-    let nombre = document.getElementById("nombre").value;
-    let apellido = document.getElementById("apellido").value;
+    let nombre = capitalizarCadaPalabra(document.getElementById("nombre").value);
+    let apellido = capitalizarCadaPalabra(document.getElementById("apellido").value);
     let correo = document.getElementById("correo").value;
     let telefono = limpiarEspacios(document.getElementById("telefono").value);
     let password = document.getElementById("password").value;
@@ -58,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Crear usuario
     const usuario = new Usuario(
-      capitalizarTexto(nombre),
-      capitalizarTexto(apellido),
+      nombre,
+      apellido,
       correo,
       telefono,
       password
