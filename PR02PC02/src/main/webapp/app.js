@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("✅ Usuario registrado con éxito");
       document.getElementById("formRegistro").reset();
       // Genera nuevo captcha tras registro
+      window.location.href = "pag2.jsp";
       captchaA = Math.floor(Math.random() * 10) + 1;
       captchaB = Math.floor(Math.random() * 10) + 1;
       captchaResultado = captchaA + captchaB;
