@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
             telefono: inputs[3].value,
             password: inputs[4].value
         };
-        fetch('SrvUsuario', {
+        // let Url='http://localhost:8080/PR02PC02_V2/SrvUsuario';
+        fetch('/PR02PC02_V2/SrvUsuario', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

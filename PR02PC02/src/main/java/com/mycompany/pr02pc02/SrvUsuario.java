@@ -1,4 +1,4 @@
-package com.mycompany.pr02pc02.servlets;
+package com.mycompany.pr02pc02;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.mycompany.pr02pc02.models.Usuario;
@@ -23,7 +23,7 @@ import java.util.Map;
  */
 
 import javax.servlet.jsp.tagext.TryCatchFinally;
-@WebServlet(name = "SrvUsuario", urlPatterns = {"/SrvUsuario"})
+//@WebServlet(name = "SrvUsuario", urlPatterns = {"/SrvUsuario"})
 public class SrvUsuario extends HttpServlet {
     
 

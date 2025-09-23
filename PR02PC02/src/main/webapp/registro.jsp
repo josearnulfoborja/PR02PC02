@@ -152,8 +152,8 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="js/app.js"></script>
-    <script src="js/efectos.js"></script>
+    <script src="app.js"></script>
+    <script src="efectos.js"></script>
 
 </body>
 </html>
