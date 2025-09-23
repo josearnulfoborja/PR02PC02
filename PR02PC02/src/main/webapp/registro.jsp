@@ -155,9 +155,59 @@
         .required {
             color: #e74c3c;
         }
+<<<<<<< HEAD
     </style>
 </head>
 <body>
+=======
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .back-button {
+                position: static;
+                margin-bottom: 20px;
+                display: inline-flex;
+                align-self: flex-start;
+            }
+            
+            .container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <span>←</span> Volver al Inicio
+    </a>
+    
+>>>>>>> dev
     <div class="container">
         <div class="header">
             <h1>Registro de Usuario</h1>
@@ -209,6 +259,19 @@
             </div>
             
             <button type="button" class="btn-register" id="btnRegistrar">REGISTRARSE</button>
+<<<<<<< HEAD
+=======
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="index.html" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                    ← Volver al Inicio
+                </a>
+                <span style="margin: 0 15px; color: #ccc;">|</span>
+                <a href="login.jsp" style="color: #667eea; text-decoration: none; font-weight: bold;">
+                    ¿Ya tienes cuenta? Inicia sesión
+                </a>
+            </div>
+>>>>>>> dev
         </form>
         
         <div id="resultado"></div>
@@ -440,7 +503,11 @@
             usuario.clave = document.getElementById('clave').value;
             const confirmarClave = document.getElementById('confirmarClave').value;
             const captcha = document.getElementById('captcha').value;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> dev
             // Validar campos
             if (!usuario.validarTodos(confirmarClave, captcha)) {
                 // Mostrar error específico según el campo que falló
@@ -463,12 +530,23 @@
                 }
                 return;
             }
+<<<<<<< HEAD
             
             // Formatear nombre y apellido
             usuario.formatearNombre().formatearApellido();
             
             // Enviar datos al servlet usando Fetch API
             fetch('SrvUsuario', {
+=======
+
+            // Formatear nombre y apellido
+            usuario.formatearNombre().formatearApellido();
+
+            urlSrvUsuario = 'http://localhost:8080/parcial02/SrvUsuario'
+
+            // Enviar datos al servlet usando Fetch API
+            fetch(urlSrvUsuario, {
+>>>>>>> dev
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -485,6 +563,17 @@
             .then(data => {
                 if (data.estado) {
                     mostrarResultado(data.mensaje || 'Usuario registrado exitosamente', true);
+<<<<<<< HEAD
+=======
+                    // Redireccionar después de 2 segundos
+                    setTimeout(() => {
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            window.location.href = 'index.html?registro=exitoso';
+                        }
+                    }, 2000);
+>>>>>>> dev
                 } else {
                     mostrarResultado(data.mensaje || 'Error al registrar usuario', false);
                 }

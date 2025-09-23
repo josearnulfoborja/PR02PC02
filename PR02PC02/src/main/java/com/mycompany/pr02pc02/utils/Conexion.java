@@ -16,6 +16,12 @@ public class Conexion {
     private static final String USUARIO = "root";
     private static final String PASSWORD = "root";
     
+<<<<<<< HEAD
+=======
+    // Variables para el pool de conexiones básico
+    private static Connection conexion = null;
+    
+>>>>>>> dev
     /**
      * Constructor privado para evitar instanciación
      */
@@ -23,13 +29,20 @@ public class Conexion {
     }
     
     /**
+<<<<<<< HEAD
      * Método principal para obtener una conexión a la base de datos 'plataforma'
+=======
+     * Método principal para obtener una conexión a la base de datos
+>>>>>>> dev
      * @return Connection objeto de conexión a la base de datos
      * @throws SQLException si hay error al conectar
      */
     public static Connection getConnection() throws SQLException {
+<<<<<<< HEAD
         Connection conexion = null;
         
+=======
+>>>>>>> dev
         try {
             // Cargar el driver de MySQL
             Class.forName(DRIVER);
