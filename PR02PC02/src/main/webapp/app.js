@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
             telefono: inputs[3].value,
             password: inputs[4].value
         };
-        // let Url='http://localhost:8080/PR02PC02_V2/SrvUsuario';
-        fetch('/PR02PC02_V2/SrvUsuario', {
+         //let Url='http://localhost:8080/PR02PC02/SrvUsuario';
+        fetch('SrvUsuario', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify(data)
         })

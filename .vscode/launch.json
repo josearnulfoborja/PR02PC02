@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "TestLogin",
+            "request": "launch",
+            "mainClass": "com.mycompany.pr02pc02.test.TestLogin",
+            "projectName": "PR02PC02"
+        },
+        {
+            "type": "java",
+            "name": "Conexion",
+            "request": "launch",
+            "mainClass": "com.mycompany.pr02pc02.utils.Conexion",
+            "projectName": "PR02PC02"
+        },
+        {
+            "type": "java",
+            "name": "Attach to Tomcat",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000
+        }
+    ]
+}

@@ -210,7 +210,7 @@
         </div>
         
         <div class="navigation">
-            <a href="index.html" class="btn">🏠 Inicio</a>
+            <a href="index.JSP" class="btn">🏠 Inicio</a>
             <a href="registro.jsp" class="btn btn-secondary">👤 Registro</a>
         </div>
         

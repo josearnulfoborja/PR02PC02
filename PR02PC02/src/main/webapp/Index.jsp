@@ -143,7 +143,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">🏨</div>
+        <div class="logo"></div>
         <h1>Sistema de Reservas de Hotel</h1>
         <div class="description">
             Bienvenido a nuestro sistema integral de reservas de hotel. 
@@ -153,26 +153,16 @@
         
         <div class="actions">
             <a href="registro.jsp" class="btn btn-primary">Registrarse</a>
-            <a href="login.jsp" class="btn">Iniciar Sesión</a>
+            <a href="login.jsp" class="btn">Iniciar Session</a>
             <a href="habitaciones.jsp" class="btn">Ver Habitaciones</a>
         </div>
         
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">👤</div>
+                <div class="feature-icon"></div>
                 <h3>Registro Seguro</h3>
-                <p>Sistema de registro con validaciones y encriptación</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🛏️</div>
-                <h3>Reservas Online</h3>
-                <p>Reserve habitaciones disponibles en tiempo real</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💳</div>
-                <h3>Pagos Seguros</h3>
-                <p>Procese pagos de forma segura y confiable</p>
-            </div>
+                <p>Sistema de registro con validaciones y encriptacion</p>
+            </div>                      
         </div>
         
         <div class="footer">
