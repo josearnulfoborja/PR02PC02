@@ -237,7 +237,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-button">← Volver al Inicio</a>
+    <a href="index.jsp" class="back-button">← Volver al Inicio</a>
     
     <div class="container">
         <div class="header">

@@ -16,12 +16,9 @@ public class Conexion {
     private static final String USUARIO = "root";
     private static final String PASSWORD = "root";
     
-<<<<<<< HEAD
-=======
     // Variables para el pool de conexiones básico
     private static Connection conexion = null;
     
->>>>>>> dev
     /**
      * Constructor privado para evitar instanciación
      */
@@ -29,20 +26,11 @@ public class Conexion {
     }
     
     /**
-<<<<<<< HEAD
-     * Método principal para obtener una conexión a la base de datos 'plataforma'
-=======
      * Método principal para obtener una conexión a la base de datos
->>>>>>> dev
      * @return Connection objeto de conexión a la base de datos
      * @throws SQLException si hay error al conectar
      */
     public static Connection getConnection() throws SQLException {
-<<<<<<< HEAD
-        Connection conexion = null;
-        
-=======
->>>>>>> dev
         try {
             // Cargar el driver de MySQL
             Class.forName(DRIVER);
@@ -85,23 +73,30 @@ public class Conexion {
     public static Connection getConnection(String host, String puerto, String baseDatos, 
                                          String usuario, String password) throws SQLException {
         try {
+            // Cargar el driver de MySQL
             Class.forName(DRIVER);
             
-            String urlPersonalizada = "jdbc:mysql://" + host + ":" + puerto + "/" + baseDatos + 
-                                    "?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            // Construir la URL personalizada
+            String urlCustom = "jdbc:mysql://" + host + ":" + puerto + "/" + baseDatos + 
+                              "?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             
-            Connection conn = DriverManager.getConnection(urlPersonalizada, usuario, password);
+            // Establecer la conexión con parámetros personalizados
+            Connection conn = DriverManager.getConnection(urlCustom, usuario, password);
             
+            // Verificar que la conexión sea válida
             if (conn != null && !conn.isClosed()) {
-                System.out.println("Conexión personalizada establecida a: " + baseDatos);
+                System.out.println("Conexión personalizada establecida exitosamente a: " + baseDatos);
                 return conn;
             } else {
                 throw new SQLException("No se pudo establecer la conexión personalizada");
             }
             
         } catch (ClassNotFoundException e) {
-            System.err.println("Error: Driver de MySQL no encontrado");
+            System.err.println("Error: No se encontró el driver de MySQL");
             throw new SQLException("Driver de MySQL no encontrado", e);
+        } catch (SQLException e) {
+            System.err.println("Error al conectar con parámetros personalizados: " + e.getMessage());
+            throw e;
         }
     }
     
