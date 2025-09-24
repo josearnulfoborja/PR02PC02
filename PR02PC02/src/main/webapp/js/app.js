@@ -35,16 +35,23 @@ const Usuario = {
         this.clave = this.clave.trim();
     },
 
-    // Método para formatear nombres con primera letra en mayúscula
+    // Método para formatear nombres con primera letra en mayúscula para cada palabra
     formatearNombres: function() {
-        // Función auxiliar para capitalizar primera letra
-        const capitalizarPrimeraLetra = (texto) => {
+        // Función auxiliar para capitalizar cada palabra
+        const capitalizarCadaPalabra = (texto) => {
             if (!texto || texto.length === 0) return texto;
-            return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+            
+            return texto.trim()
+                       .split(/\s+/) // Dividir por uno o más espacios
+                       .map(palabra => {
+                           if (palabra.length === 0) return palabra;
+                           return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
+                       })
+                       .join(' '); // Unir con un solo espacio
         };
         
-        this.nombre = capitalizarPrimeraLetra(this.nombre);
-        this.apellido = capitalizarPrimeraLetra(this.apellido);
+        this.nombre = capitalizarCadaPalabra(this.nombre);
+        this.apellido = capitalizarCadaPalabra(this.apellido);
     },
 
     // Método para validar que nombres y apellidos no contengan números

@@ -115,7 +115,7 @@ public class SrvUsuario extends HttpServlet {
             // Generar código de verificación
             usuario.setCodigoVerificacion(usuario.generarCodigoVerificacion());
             
-            System.out.println("Usuario a registrar: " + usuario.toString());
+            System.out.println("Registrando usuario: " + usuario.getCorreo() + " desde IP: " + direccionIP);
             
             // Validar campos obligatorios
             if (usuario.getNombre() == null || usuario.getNombre().isEmpty() ||
@@ -221,7 +221,17 @@ public class SrvUsuario extends HttpServlet {
             ip = ip.split(",")[0].trim();
         }
         
-        return ip;
+        // Convertir IPv6 localhost a IPv4 localhost para mejor legibilidad
+        if ("0:0:0:0:0:0:0:1".equals(ip) || "::1".equals(ip)) {
+            ip = "127.0.0.1";
+        }
+        
+        // Si la IP está vacía o es null, asignar localhost
+        if (ip == null || ip.trim().isEmpty()) {
+            ip = "127.0.0.1";
+        }
+        
+        return ip.trim();
     }
     
     /**

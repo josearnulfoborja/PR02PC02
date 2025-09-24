@@ -51,7 +51,7 @@ public class Usuario {
     }
     
     public void setNombre(String nombre) {
-        this.nombre = capitalizarPrimeraLetra(nombre);
+        this.nombre = capitalizarCadaPalabra(nombre);
     }
     
     public String getApellido() {
@@ -59,7 +59,7 @@ public class Usuario {
     }
     
     public void setApellido(String apellido) {
-        this.apellido = capitalizarPrimeraLetra(apellido);
+        this.apellido = capitalizarCadaPalabra(apellido);
     }
     
     public String getClave() {
@@ -135,16 +135,35 @@ public class Usuario {
     }
     
     /**
-     * Método auxiliar para formatear texto con primera letra en mayúscula
+     * Método auxiliar para formatear texto con primera letra en mayúscula para cada palabra
      * @param texto texto a formatear
-     * @return texto con primera letra en mayúscula y el resto en minúscula
+     * @return texto con primera letra de cada palabra en mayúscula y el resto en minúscula
      */
-    private static String capitalizarPrimeraLetra(String texto) {
+    private static String capitalizarCadaPalabra(String texto) {
         if (texto == null || texto.trim().isEmpty()) {
             return texto;
         }
+        
         String textoLimpio = texto.trim();
-        return textoLimpio.substring(0, 1).toUpperCase() + textoLimpio.substring(1).toLowerCase();
+        String[] palabras = textoLimpio.split("\\s+"); // Dividir por uno o más espacios
+        StringBuilder resultado = new StringBuilder();
+        
+        for (int i = 0; i < palabras.length; i++) {
+            String palabra = palabras[i];
+            if (palabra.length() > 0) {
+                // Capitalizar primera letra y el resto en minúscula
+                String palabraFormateada = palabra.substring(0, 1).toUpperCase() + 
+                                         palabra.substring(1).toLowerCase();
+                resultado.append(palabraFormateada);
+            }
+            
+            // Agregar espacio entre palabras (excepto en la última)
+            if (i < palabras.length - 1) {
+                resultado.append(" ");
+            }
+        }
+        
+        return resultado.toString();
     }
     
     /**
