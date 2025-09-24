@@ -8,13 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-/**
- * Clase modelo Usuario
- * Representa un usuario del sistema con todos sus atributos y métodos
- */
 public class Usuario {
-    
-    // Atributos del usuario
     private String nombre;
     private String apellido;
     private String clave;
@@ -27,7 +21,6 @@ public class Usuario {
     private Timestamp fechaCreacion;
     private String direccionIP;
     
-    // Constructor vacío
     public Usuario() {
         this.roll = "usuario";
         this.estado = "Inactivo";
@@ -35,7 +28,6 @@ public class Usuario {
         this.fechaCreacion = new Timestamp(System.currentTimeMillis());
     }
     
-    // Constructor con parámetros principales
     public Usuario(String nombre, String apellido, String clave, String correo, String telefono) {
         this();
         this.nombre = nombre;
@@ -45,7 +37,6 @@ public class Usuario {
         this.telefono = telefono;
     }
     
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }
@@ -134,30 +125,23 @@ public class Usuario {
         this.direccionIP = direccionIP;
     }
     
-    /**
-     * Método auxiliar para formatear texto con primera letra en mayúscula para cada palabra
-     * @param texto texto a formatear
-     * @return texto con primera letra de cada palabra en mayúscula y el resto en minúscula
-     */
     private static String capitalizarCadaPalabra(String texto) {
         if (texto == null || texto.trim().isEmpty()) {
             return texto;
         }
         
         String textoLimpio = texto.trim();
-        String[] palabras = textoLimpio.split("\\s+"); // Dividir por uno o más espacios
+        String[] palabras = textoLimpio.split("\\s+");
         StringBuilder resultado = new StringBuilder();
         
         for (int i = 0; i < palabras.length; i++) {
             String palabra = palabras[i];
             if (palabra.length() > 0) {
-                // Capitalizar primera letra y el resto en minúscula
                 String palabraFormateada = palabra.substring(0, 1).toUpperCase() + 
                                          palabra.substring(1).toLowerCase();
                 resultado.append(palabraFormateada);
             }
             
-            // Agregar espacio entre palabras (excepto en la última)
             if (i < palabras.length - 1) {
                 resultado.append(" ");
             }
@@ -166,18 +150,12 @@ public class Usuario {
         return resultado.toString();
     }
     
-    /**
-     * Encripta una contraseña usando MD5
-     * @param password contraseña a encriptar
-     * @return contraseña encriptada en MD5
-     */
     public static String encriptarMD5(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] digest = md.digest();
             
-            // Convertir byte array a hexadecimal
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
                 sb.append(String.format("%02x", b));
@@ -191,11 +169,6 @@ public class Usuario {
         }
     }
     
-    /**
-     * Verifica si un correo electrónico ya existe en la base de datos
-     * @param correo correo electrónico a verificar
-     * @return true si el correo ya existe, false si está disponible
-     */
     public static boolean correoExiste(String correo) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -203,17 +176,13 @@ public class Usuario {
         boolean existe = false;
         
         try {
-            // Obtener conexión
             connection = Conexion.getConnection();
             
-            // Query de búsqueda
             String sql = "SELECT COUNT(*) as total FROM usuarios WHERE correo = ?";
             
-            // Preparar statement
             statement = connection.prepareStatement(sql);
             statement.setString(1, correo.toLowerCase().trim());
             
-            // Ejecutar consulta
             resultSet = statement.executeQuery();
             
             if (resultSet.next()) {
@@ -224,10 +193,8 @@ public class Usuario {
         } catch (SQLException e) {
             System.err.println("Error al verificar correo existente: " + e.getMessage());
             e.printStackTrace();
-            // En caso de error, asumimos que existe para prevenir duplicados
             existe = true;
         } finally {
-            // Cerrar recursos
             if (resultSet != null) {
                 try {
                     resultSet.close();
@@ -248,10 +215,6 @@ public class Usuario {
         return existe;
     }
     
-    /**
-     * Registra el usuario en la base de datos
-     * @return true si el registro fue exitoso, false en caso contrario
-     */
     public boolean registrarUsuario() {
         // Verificar si el correo ya existe
         if (correoExiste(this.correo)) {
@@ -264,15 +227,12 @@ public class Usuario {
         boolean registroExitoso = false;
         
         try {
-            // Obtener conexión
             connection = Conexion.getConnection();
             
-            // Query de inserción
             String sql = "INSERT INTO usuarios (nombre, apellido, clave, correo, telefono, " +
                         "roll, estado, codigoVerificacion, modoAutenticacion, fechaCreacion, direccionIP) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            
-            // Preparar statement
+
             statement = connection.prepareStatement(sql);
             statement.setString(1, this.nombre);
             statement.setString(2, this.apellido);
@@ -286,7 +246,6 @@ public class Usuario {
             statement.setTimestamp(10, this.fechaCreacion);
             statement.setString(11, this.direccionIP);
             
-            // Ejecutar inserción
             int filasAfectadas = statement.executeUpdate();
             registroExitoso = filasAfectadas > 0;
             
@@ -301,7 +260,6 @@ public class Usuario {
             e.printStackTrace();
             registroExitoso = false;
         } finally {
-            // Cerrar recursos
             if (statement != null) {
                 try {
                     statement.close();
@@ -315,10 +273,6 @@ public class Usuario {
         return registroExitoso;
     }
     
-    /**
-     * Genera un código de verificación aleatorio
-     * @return código de verificación
-     */
     public String generarCodigoVerificacion() {
         return String.valueOf(System.currentTimeMillis()) + 
                String.valueOf((int)(Math.random() * 1000));

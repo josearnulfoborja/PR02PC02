@@ -13,7 +13,6 @@
             <!-- Nombre -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- icono usuario -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -29,7 +28,6 @@
             <!-- Apellido -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- mismo icono usuario -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +43,6 @@
             <!-- Correo -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- icono correo -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -61,7 +58,6 @@
             <!-- Teléfono -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- icono telefono -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +72,6 @@
             <!-- Contraseña -->
             <div class="input-group password-group">
                 <span class="icon">
-                    <!-- icono clave -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -106,7 +101,6 @@
             <!-- Confirmar contraseña -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- icono clave -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -123,7 +117,6 @@
             <!-- Rol -->
             <div class="input-group">
                 <span class="icon">
-                    <!-- icono rol -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -140,13 +133,11 @@
                 <input type="text" placeholder="Rol" value="usuario" readonly>
             </div>
 
-            <!-- Captcha -->
             <div class="captcha">
                 <div class="captcha-text">ABC123</div>
                 <input type="text" placeholder="Escriba el captcha">
             </div>
 
-            <!-- Botón -->
             <button type="submit">REGISTRARSE</button>
         </form>
         <div id="resultado"></div>
