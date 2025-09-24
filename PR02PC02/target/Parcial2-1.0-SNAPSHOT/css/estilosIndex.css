@@ -1,0 +1,266 @@
+/* =============================================
+   ESTILOS PARA EL INDEX
+   ============================================= */
+   /* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #2a2a33;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondo animado con partículas */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.3)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.2)"/><circle cx="50" cy="10" r="0.8" fill="rgba(255,255,255,0.25)"/><circle cx="10" cy="60" r="0.6" fill="rgba(255,255,255,0.2)"/><circle cx="90" cy="30" r="0.4" fill="rgba(255,255,255,0.3)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+    opacity: 0.6;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+}
+
+/* Elementos flotantes decorativos */
+body::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translateY(-30px) translateX(20px) rotate(10deg);
+        opacity: 0.6;
+    }
+}
+
+.bienvenida-div {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 60px 40px;
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0,0,0,0.15),
+        0 15px 35px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.3);
+    max-width: 600px;
+    position: relative;
+    animation: slideIn 0.8s ease-out;
+    overflow: hidden;
+}
+
+/* Efecto de brillo en el contenedor */
+.bienvenida-div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.bienvenida-div h1 {
+    font-size: 2.8rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+}
+
+.bienvenida-div h1 span {
+    color: #34b68d;
+    font-weight: 800;
+    display: block;
+    margin-top: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.bienvenida-div p {
+    font-size: 1.3rem;
+    color: #cccccc;
+    margin-bottom: 40px;
+    font-weight: 400;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.btn {
+    display: inline-block;
+    background: #34b68d;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(52, 182, 141, 0.4);
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(52, 182, 141, 0.6);
+    background: #2a9c77;
+}
+
+.btn:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(52, 182, 141, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bienvenida-div {
+        padding: 40px 30px;
+        margin: 20px;
+        border-radius: 20px;
+    }
+    
+    .bienvenida-div h1 {
+        font-size: 2.2rem;
+    }
+    
+    .bienvenida-div p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+    
+    .btn {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .bienvenida-div {
+        padding: 30px 20px;
+        margin: 15px;
+    }
+    
+    .bienvenida-div h1 {
+        font-size: 1.8rem;
+    }
+    
+    .bienvenida-div p {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    
+    .btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+        border-radius: 40px;
+    }
+}
+
+/* Efectos adicionales de hover en el contenedor */
+.bienvenida-div:hover {
+    box-shadow: 
+        0 30px 60px rgba(0,0,0,0.2),
+        0 20px 40px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    transform: translateY(-5px);
+}
+
+/* Animación de entrada para el texto */
+.bienvenida-div h1, .bienvenida-div p {
+    animation: fadeInUp 0.8s ease-out;
+    animation-fill-mode: both;
+    color:#35383a;
+}
+
+.bienvenida-div p {
+    animation-delay: 0.2s;
+}
+
+.bienvenida-div .btn {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

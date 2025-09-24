@@ -1,0 +1,5 @@
+com\mycompany\parcial2\JakartaRestConfiguration.class
+com\mycompany\parcial2\resources\JakartaEE10Resource.class
+com\mycompany\parcial2\conexion\Conexion.class
+com\mycompany\parcial2\servlet\SrvUsuario.class
+com\mycompany\parcial2\modelo\Usuario.class

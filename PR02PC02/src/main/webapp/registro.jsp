@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <div class="form-container">
+    <div class="formulario-container">
         <h2>Registro de Usuario</h2>
     <form id="registroForm">
             <!-- Nombre -->
@@ -23,7 +23,7 @@
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
                     </svg>
                 </span>
-                <input type="text" placeholder="Nombre" required>
+                <input type="text" placeholder="Nombre">
             </div>
 
             <!-- Apellido -->
@@ -39,7 +39,7 @@
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
                     </svg>
                 </span>
-                <input type="text" placeholder="Apellido" required>
+                <input type="text" placeholder="Apellido">
             </div>
 
             <!-- Correo -->
@@ -55,7 +55,7 @@
                         <path d="M3 7l9 6l9 -6"/>
                     </svg>
                 </span>
-                <input type="email" placeholder="Correo electrónico" required>
+                <input type="text" placeholder="Correo electrónico">
             </div>
 
             <!-- Teléfono -->
@@ -70,7 +70,7 @@
                         <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>
                     </svg>
                 </span>
-                <input type="tel" placeholder="Teléfono" required>
+                <input type="tel" placeholder="Teléfono">
             </div>
 
             <!-- Contraseña -->
@@ -87,7 +87,7 @@
                         <path d="M10.485 17.577c.337 .29 .7 .423 1.515 .423h.413c.323 0 .633 -.133 .862 -.368a1.27 1.27 0 0 0 .356 -.886c0 -.332 -.128 -.65 -.356 -.886a1.203 1.203 0 0 0 -.862 -.368h-.826a1.2 1.2 0 0 1 -.861 -.367a1.27 1.27 0 0 1 -.356 -.886c0 -.332 .128 -.651 .356 -.886a1.2 1.2 0 0 1 .861 -.368h.413c.816 0 1.178 .133 1.515 .423" />
                     </svg>
                 </span>
-                <input type="password" id="password" placeholder="Contraseña" required>
+                <input type="password" id="password" placeholder="Contraseña">
                 <span class="toggle-password" title="Mostrar contraseña">
                     <!-- icono ojo (visible por defecto oculto) -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -117,7 +117,7 @@
                         <path d="M10.485 17.577c.337 .29 .7 .423 1.515 .423h.413c.323 0 .633 -.133 .862 -.368a1.27 1.27 0 0 0 .356 -.886c0 -.332 -.128 -.65 -.356 -.886a1.203 1.203 0 0 0 -.862 -.368h-.826a1.2 1.2 0 0 1 -.861 -.367a1.27 1.27 0 0 1 -.356 -.886c0 -.332 .128 -.651 .356 -.886a1.2 1.2 0 0 1 .861 -.368h.413c.816 0 1.178 .133 1.515 .423" />
                     </svg>
                 </span>
-                <input type="password" placeholder="Confirmar contraseña" required>
+                <input type="password" placeholder="Confirmar contraseña">
             </div>
 
             <!-- Rol -->
@@ -143,7 +143,7 @@
             <!-- Captcha -->
             <div class="captcha">
                 <div class="captcha-text">ABC123</div>
-                <input type="text" placeholder="Escriba el captcha" required>
+                <input type="text" placeholder="Escriba el captcha">
             </div>
 
             <!-- Botón -->
@@ -152,8 +152,8 @@
         <div id="resultado"></div>
     </div>
 
-    <script src="app.js"></script>
-    <script src="efectos.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/efectos.js"></script>
 
 </body>
 </html>
