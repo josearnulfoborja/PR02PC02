@@ -12,7 +12,7 @@ public class Conexion {
     
     // Parámetros de conexión a MySQL
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/plataforma2?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String URL = "jdbc:mysql://localhost:3306/plataforma?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "root";
     
