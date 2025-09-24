@@ -19,7 +19,7 @@ public class Usuario {
     private String correo;
     private String telefono;
     private String roll;
-    private boolean estado;
+    private String estado;
     private String codigoVerificacion;
     private String modoAutenticacion;
     private String fechaCreacion;
@@ -36,7 +36,7 @@ public class Usuario {
         this.correo = correo;
         this.telefono = telefono;
         this.clave = clave;
-        this.estado = true;
+        this.estado = "Inactivo";
         this.roll = "CLIENTE";
         this.modoAutenticacion = "EMAIL";
     }
@@ -144,14 +144,14 @@ public class Usuario {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(String    estado) {
         this.estado = estado;
     }
 
@@ -232,7 +232,7 @@ public class Usuario {
             
             // Query para insertar nuevo usuario
             String sql = "INSERT INTO usuarios (nombre, apellido, clave, correo, telefono, " +
-                        "roll, estado, codigo_verificacion, modo_autenticacion, fecha_creacion, direccion_ip) " +
+                        "roll, estado, codigoverificacion, modoAutenticacion, fechacreacion, direccionIP) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             pstmt = conn.prepareStatement(sql);
@@ -244,7 +244,7 @@ public class Usuario {
             pstmt.setString(4, this.correo);
             pstmt.setString(5, this.telefono);
             pstmt.setString(6, this.roll);
-            pstmt.setBoolean(7, this.estado);
+            pstmt.setString(7, this.estado);
             pstmt.setString(8, this.codigoVerificacion);
             pstmt.setString(9, this.modoAutenticacion);
             pstmt.setString(10, this.fechaCreacion);
@@ -323,7 +323,7 @@ public class Usuario {
         try {
             conn = Conexion.getConnection();
             
-            String sql = "SELECT * FROM usuarios WHERE correo = ? AND clave = ? AND estado = true";
+            String sql = "SELECT * FROM usuarios WHERE correo = ? AND clave = ? AND estado = 'Activo'";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, correo.trim().toLowerCase());
             pstmt.setString(2, clave);
@@ -338,7 +338,7 @@ public class Usuario {
                 usuario.setCorreo(rs.getString("correo"));
                 usuario.setTelefono(rs.getString("telefono"));
                 usuario.setRoll(rs.getString("roll"));
-                usuario.setEstado(rs.getBoolean("estado"));
+                usuario.setEstado(rs.getString("estado"));
                 usuario.setCodigoVerificacion(rs.getString("codigo_verificacion"));
                 usuario.setModoAutenticacion(rs.getString("modo_autenticacion"));
                 usuario.setFechaCreacion(rs.getString("fecha_creacion"));

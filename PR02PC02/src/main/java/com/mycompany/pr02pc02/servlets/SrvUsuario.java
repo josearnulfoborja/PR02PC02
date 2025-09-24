@@ -1,40 +1,34 @@
-package com.mycompany.pr02pc02;
+package com.mycompany.pr02pc02.servlets;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.mycompany.pr02pc02.models.Usuario;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import com.mycompany.pr02pc02.utils.Conexion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-/*
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
  * Servlet para manejar el registro de usuarios
  * Recibe datos en formato JSON y los procesa para registrar un nuevo usuario
-
  */
-
 @WebServlet(name = "SrvUsuario", urlPatterns = { "/SrvUsuario" })
 public class SrvUsuario extends HttpServlet {
 
-    private final Gson gson = new Gson();
+    private static final long serialVersionUID = 1L;
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     * Procesa el registro de nuevos usuarios
-     * 
-     * private static final long serialVersionUID = 1L;
-     * 
-     * /**
      * Handles the HTTP <code>POST</code> method.
      * Recibe los datos del usuario en formato JSON, los valida,
      * encripta la contraseña y los guarda en la base de datos.
@@ -47,9 +41,6 @@ public class SrvUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
 
         // Configurar la respuesta para JSON
         response.setContentType("application/json;charset=UTF-8");
@@ -101,7 +92,7 @@ public class SrvUsuario extends HttpServlet {
 
             // Establecer valores por defecto
             usuario.setRoll("CLIENTE"); // Rol por defecto para usuarios registrados
-            usuario.setEstado(true); // Usuario activo por defecto
+            usuario.setEstado("Inactivo"); // Usuario activo por defecto
             usuario.setCodigoVerificacion(generarCodigoVerificacion());
             usuario.setModoAutenticacion("EMAIL");
             usuario.setFechaCreacion(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -110,17 +101,17 @@ public class SrvUsuario extends HttpServlet {
             boolean registroExitoso = usuario.registrarUsuario();
 
             if (registroExitoso) {
-                jsonResponse.put("estado", true);
+                jsonResponse.put("estado", "Inactivo");
                 jsonResponse.put("mensaje", "Usuario registrado exitosamente. Bienvenido " + usuario.getNombre() + "!");
                 jsonResponse.put("redirect", "index.jsp?registro=exitoso");
             } else {
-                jsonResponse.put("estado", false);
+                jsonResponse.put("estado", "Inactivo");
                 jsonResponse.put("mensaje", "Error al registrar el usuario. Intente nuevamente.");
             }
 
         } catch (Exception e) {
             // Manejar errores generales
-            jsonResponse.put("estado", false);
+            jsonResponse.put("estado", "Inactivo");
             jsonResponse.put("mensaje", "Error interno del servidor: " + e.getMessage());
             e.printStackTrace();
         } finally {
@@ -163,41 +154,11 @@ public class SrvUsuario extends HttpServlet {
      * @return Dirección IP del cliente
      */
     private String obtenerIPCliente(HttpServletRequest request) {
-
         String ip = request.getHeader("X-Forwarded-For");
 
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_FORWARDED");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_X_CLUSTER_CLIENT_IP");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_CLIENT_IP");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_FORWARDED_FOR");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_FORWARDED");
-        }
-
-        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("HTTP_VIA");
-        }
-
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
@@ -211,6 +172,7 @@ public class SrvUsuario extends HttpServlet {
             ip = request.getRemoteAddr();
         }
 
+        // Si hay múltiples IPs separadas por comas, tomar la primera
         if (ip != null && ip.contains(",")) {
             ip = ip.split(",")[0].trim();
         }
@@ -219,31 +181,10 @@ public class SrvUsuario extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>GET</code> method.
-     * Devuelve información sobre el servlet
+     * Genera un código de verificación aleatorio
+     * 
+     * @return Código de 6 dígitos
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        JsonObject info = new JsonObject();
-        info.addProperty("servlet", "SrvUsuario");
-        info.addProperty("descripcion", "Servlet para registro de usuarios del sistema de reservas de hotel");
-        info.addProperty("metodos", "POST para registro, GET para información");
-        info.addProperty("version", "1.0");
-        info.addProperty("desarrollador", "Borja y equipo");
-
-        out.print(gson.toJson(info));
-        out.flush();
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     */
-
     private String generarCodigoVerificacion() {
         return String.valueOf((int) (Math.random() * 900000) + 100000);
     }
@@ -255,16 +196,6 @@ public class SrvUsuario extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Servlet para registro de usuarios del sistema de reservas de hotel";
-
-    }
-
-    @Override
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
-        response.setStatus(HttpServletResponse.SC_OK);
+        return "Servlet para registro de usuarios del sistema de reservas de hotel";
     }
 }
