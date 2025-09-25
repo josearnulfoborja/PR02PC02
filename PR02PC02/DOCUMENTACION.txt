@@ -1,0 +1,56 @@
+
+DOCUMENTACIÓN DEL PROYECTO PR02PC02
+Sistema de Reservas de Hotel
+
+ESTRUCTURA DEL PROYECTO:
+-----------------------
+
+1. FRONTEND:
+   - Index.jsp: Página principal del sistema con navegación
+   - registro.jsp: Formulario de registro de usuarios
+   - app.js: JavaScript para envío de datos con Fetch API
+   - estilos.css: Estilos CSS para la interfaz
+
+2. BACKEND (Java):
+   - JakartaRestConfiguration.java: Configuración REST (@ApplicationPath("resources"))
+   - SrvUsuarios.java: Endpoint REST para registro de usuarios
+   - JakartaEE8Resource.java: Endpoint de prueba (ping)
+   - conexion.java: Clase para conexión a base de datos MySQL
+
+3. BASE DE DATOS:
+   - MySQL (localhost:3306/plataforma)
+   - Credenciales: root/root
+
+
+FLUJO DE REGISTRO:
+-----------------
+1. Usuario accede a registro.jsp
+2. Completa formulario (nombre, apellido, correo, teléfono, contraseña)
+3. JavaScript captura submit y envía datos JSON al backend
+4. Backend procesa datos y responde con confirmación
+5. Frontend muestra mensaje de éxito/error
+
+
+DIVISIÓN DEL TRABAJO (3 PERSONAS):
+----------------------------------
+
+Karen y Cris - FRONTEND DEVELOPER:
+- Diseño y estructura de Index.jsp
+- Creación del formulario en registro.jsp
+- Desarrollo de estilos CSS (estilos.css)
+- Implementación de JavaScript (app.js) con Fetch API
+- Integración y pruebas del frontend
+
+Jose y Lesly - BACKEND DEVELOPER:
+- Configuración de Jakarta EE (JakartaRestConfiguration.java)
+- Desarrollo de endpoints REST (SrvUsuarios.java, JakartaEE8Resource.java)
+- Implementación de la lógica de registro de usuarios
+- Manejo de JSON y respuestas HTTP
+- Configuración del servidor y despliegue
+
+Diego - DATABASE DEVELOPER:
+- Diseño de la base de datos MySQL
+- Creación de la clase de conexión (conexion.java)
+- Implementación del método getConnection()
+- Configuración de la base de datos y tablas
+- Scripts SQL y documentación de BD

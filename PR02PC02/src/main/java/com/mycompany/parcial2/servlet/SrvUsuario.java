@@ -221,11 +221,6 @@ public class SrvUsuario extends HttpServlet {
             ip = ip.split(",")[0].trim();
         }
         
-        // Convertir IPv6 localhost a IPv4 localhost para mejor legibilidad
-        if ("0:0:0:0:0:0:0:1".equals(ip) || "::1".equals(ip)) {
-            ip = "127.0.0.1";
-        }
-        
         // Si la IP está vacía o es null, asignar localhost
         if (ip == null || ip.trim().isEmpty()) {
             ip = "127.0.0.1";
