@@ -54,3 +54,33 @@ Diego - DATABASE DEVELOPER:
 - Implementación del método getConnection()
 - Configuración de la base de datos y tablas
 - Scripts SQL y documentación de BD
+
+PROSIBLES ERRORES:
+---------------
+- Error 404: Verificar que el servidor esté ejecutándose y desplegado
+- Problemas de CORS: Asegurar headers correctos en Fetch API
+- Error BD: Verificar credenciales y conexión MySQL
+- JavaScript no funciona: Verificar referencia a app.js en registro.jsp
+- Index: Verifica que el nombre del index inicie en minuscula, index.jsp
+
+ERROR COMÚN DE NAVEGACIÓN:
+-------------------------
+Si al ejecutar comandos de terminal obtienes el error:
+
+cd : No existe ningún objeto en la ruta de acceso especificada, C:\src\PR02PC02\PR02PC02\....
+En línea: 1 Carácter: 1
++ cd ...
++ ~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], PSArgumentException
+    + FullyQualifiedErrorId : Argument,Microsoft.PowerShell.Commands.SetLocationCommand
+
+SOLUCIÓN:
+- Primero navega a la carpeta principal del proyecto:
+  cd C:\src\PR02PC02
+- Luego entra a la subcarpeta del proyecto:
+  cd PR02PC02
+- O navega directamente con la ruta completa:
+  cd "C:\src\PR02PC02\PR02PC02"
+
+NOTA: Este error ocurre porque el proyecto tiene una estructura de carpetas anidada
+donde hay dos niveles de PR02PC02 (C:\src\PR02PC02\PR02PC02\)
