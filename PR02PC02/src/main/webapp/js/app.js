@@ -1,10 +1,3 @@
-/**
- * OBJETO USUARIO - VALIDACIÓN DE FORMULARIO DE REGISTRO
- * Archivo: validacion.js
- * Descripción: Maneja la validación completa del formulario de registro
- */
-
-// Objeto Usuario para manejar validaciones
 const Usuario = {
     // Propiedades del usuario
     nombre: '',
@@ -37,7 +30,6 @@ const Usuario = {
 
     // Método para formatear nombres con primera letra en mayúscula para cada palabra
     formatearNombres: function() {
-        // Función auxiliar para capitalizar cada palabra
         const capitalizarCadaPalabra = (texto) => {
             if (!texto || texto.length === 0) return texto;
             
@@ -104,7 +96,7 @@ const Usuario = {
         return null;
     },
 
-    // Método para validar que las contraseñas coincidan
+    // Método para validar que las contraseñas sean iguales y cumplan requisitos
     validarContrasenas: function(confirmarClave) {
         if (this.clave !== confirmarClave) {
             return {
@@ -113,7 +105,7 @@ const Usuario = {
             };
         }
 
-        // Validar fortaleza de la contraseña
+        // Validar seguridad de la contraseña
         const errorClave = this.validarFortalezaClave();
         if (errorClave) {
             return errorClave;
@@ -122,7 +114,7 @@ const Usuario = {
         return null;
     },
 
-    // Método para validar fortaleza de la contraseña
+    // Método para validar seguridad de la contraseña
     validarFortalezaClave: function() {
         // Mínimo 6 caracteres
         if (this.clave.length < 6) {
@@ -167,7 +159,7 @@ const Usuario = {
         return null;
     },
 
-    // Método para validar si el correo ya existe (async)
+    // Método para validar si el correo ya existe
     validarCorreoDuplicado: async function() {
         if (!this.correo || this.correo.trim() === '') {
             return null; // No validar si está vacío
@@ -197,7 +189,6 @@ const Usuario = {
             return null;
         } catch (error) {
             console.error('Error al validar correo duplicado:', error);
-            // En caso de error, no bloquear el registro
             return null;
         }
     },
@@ -378,7 +369,7 @@ const CAPTCHA = {
         }
     },
     
-    // Validar si el código ingresado es correcto (sensible a mayúsculas/minúsculas)
+    // Validar si el código ingresado es correcto
     validar: function(codigoIngresado) {
         return codigoIngresado === this.codigoActual;
     },
@@ -390,7 +381,6 @@ const CAPTCHA = {
     }
 };
 
-// Funciones auxiliares para manejo del DOM
 const ValidacionUI = {
     
     // Marcar campo como inválido (en rojo)
@@ -420,7 +410,6 @@ const ValidacionUI = {
             campo.style.borderColor = '#34b68d';
             campo.style.backgroundColor = '#f0fff4';
             
-            // Remover mensaje de error
             this.removerMensajeError(campo);
         }
     },
@@ -447,7 +436,6 @@ const ValidacionUI = {
         mensajeDiv.className = 'mensaje-error';
         mensajeDiv.textContent = mensaje;
         
-        // Insertar el mensaje dentro del input-group, al final
         const inputGroup = campo.parentElement;
         inputGroup.appendChild(mensajeDiv);
     },
@@ -487,7 +475,6 @@ const ValidacionUI = {
     }
 };
 
-// Función asíncrona para validar el formulario incluyendo verificación de correo duplicado
 async function validarFormularioCompleto() {
     // Obtener valores del formulario
     const datos = {
@@ -507,7 +494,6 @@ async function validarFormularioCompleto() {
     Usuario.inicializar(datos);
     const resultado = Usuario.validar(confirmarClave);
 
-    // Si hay errores básicos, no continuar
     if (!resultado.valido) {
         resultado.errores.forEach(error => {
             ValidacionUI.marcarError(error.campo, error.mensaje);
@@ -528,7 +514,6 @@ async function validarFormularioCompleto() {
         }
     } catch (error) {
         console.error('Error al validar correo duplicado:', error);
-        // Continuar sin bloquear en caso de error de conectividad
     }
 
     // Validar CAPTCHA
@@ -536,7 +521,6 @@ async function validarFormularioCompleto() {
     const captchaValido = CAPTCHA.validar(codigoCaptcha);
     
     if (!captchaValido) {
-        // Marcar CAPTCHA como inválido
         const inputCaptcha = document.querySelector('.captcha input');
         if (inputCaptcha) {
             inputCaptcha.style.borderColor = '#f56565';
@@ -568,7 +552,6 @@ async function validarFormularioCompleto() {
 
 // Función principal para validar el formulario
 function validarFormulario() {
-    // Obtener valores del formulario
     const datos = {
         nombre: document.querySelector('input[placeholder="Nombre"]')?.value || '',
         apellido: document.querySelector('input[placeholder="Apellido"]')?.value || '',
@@ -602,7 +585,7 @@ function validarFormulario() {
         return false;
     }
 
-    // Mostrar errores en la UI
+    // Mostrar errores
     if (!resultado.valido) {
         resultado.errores.forEach(error => {
             ValidacionUI.marcarError(error.campo, error.mensaje);
@@ -630,10 +613,9 @@ function validarFormulario() {
     }
 }
 
-// Función para enviar datos al servlet mediante Fetch API
+// Función para enviar datos al servlet
 async function enviarDatosUsuario() {
     try {
-        // Convertir el objeto Usuario a JSON
         const usuarioJSON = {
             nombre: Usuario.nombre,
             apellido: Usuario.apellido,
