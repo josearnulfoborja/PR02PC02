@@ -19,9 +19,7 @@
     <input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
     <div id="captchaContainer"></div>
     <input type="text" id="captchaRespuesta" placeholder="Resuelve el captcha" required>
-    <button type="button" id=""><a href="pag2.jsp">REGISTRATE</a></button>
-    
-
+       <button type="button" id="registrarse">Registrarse</button>
   </form>
   <div id="pantallaPractica" style="display:none;"></div>
   <script src="app.js"></script>
