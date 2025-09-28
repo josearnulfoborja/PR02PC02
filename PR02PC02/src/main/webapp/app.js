@@ -44,35 +44,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Evento en botón REGISTRARSE con arrow function
   document.getElementById("registrarse").addEventListener("click", (event) => {
-    event.preventDefault(); // Evita el submit y recarga
-    let nombre = capitalizarCadaPalabra(document.getElementById("nombre").value);
-    let apellido = capitalizarCadaPalabra(document.getElementById("apellido").value);
-    let correo = document.getElementById("correo").value;
-    let telefono = limpiarEspacios(document.getElementById("telefono").value);
-    let password = document.getElementById("password").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-    let captchaRespuesta = document.getElementById("captchaRespuesta").value;
+    event.preventDefault();
+    let valido = true;
+    let campos = ["nombre", "apellido", "correo", "telefono", "password", "confirmPassword", "captchaRespuesta"];
+    campos.forEach(id => {
+      let campo = document.getElementById(id);
+      campo.style.borderColor = ""; // Limpia color previo
+      if (!campo.value.trim()) {
+        campo.style.borderColor = "red";
+        valido = false;
+        document.getElementById("resultado").innerText = "Todos los campos son obligatorios";
+      }
+    });
+    if (!valido) return;
 
-    // Validaciones
-    if (!campoNoVacio(nombre)) return alert("❌ El nombre no puede estar vacío ni contener solo espacios");
-    if (!campoNoVacio(apellido)) return alert("❌ El apellido no puede estar vacío ni contener solo espacios");
-    if (!empiezaConMayuscula(nombre)) return alert("❌ El nombre debe empezar con mayúscula");
-    if (!empiezaConMayuscula(apellido)) return alert("❌ El apellido debe empezar con mayúscula");
-    if (!validarCorreo(correo)) return alert("❌ Correo inválido");
-    if (!validarTelefono(telefono)) return alert("❌ Teléfono inválido (8-15 dígitos)");
-    if (!validarPassword(password)) return alert("❌ La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula, número y símbolo");
-    if (password !== confirmPassword) return alert("❌ Las contraseñas no coinciden");
-    if (parseInt(captchaRespuesta) !== captchaResultado) return alert("❌ Captcha incorrecto");
+    const usuario = {
+      nombre: capitalizarCadaPalabra(document.getElementById("nombre").value),
+      apellido: capitalizarCadaPalabra(document.getElementById("apellido").value),
+      clave: document.getElementById("password").value,
+      correo: document.getElementById("correo").value,
+      telefono: document.getElementById("telefono").value,
+      roll: "usuario",
+      estado: "Inactivo",
+      codigoVerificacion: "",
+      modoAutenticacion: "Autoregistro",
+      direccionIP: "" // Se obtiene en backend
+    };
 
-    // Crear usuario
-    const usuario = new Usuario(
-      nombre,
-      apellido,
-      correo,
-      telefono,
-      password
-    );
-    enviarDatos(usuario);
+    fetch("/PR02PC02/SrvUsuario", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(usuario)
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Error en la respuesta del servidor");
+      }
+      return res.json();
+    })
+    .then(data => {
+      document.getElementById("resultado").innerText = data.mensaje;
+    })
+    .catch(err => {
+      console.error("Error de conexión:", err);
+      document.getElementById("resultado").innerText = "Error de conexión con el servidor";
+    });
   });
 
   // Envío con Fetch API

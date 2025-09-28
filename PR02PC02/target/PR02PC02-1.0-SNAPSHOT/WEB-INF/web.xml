@@ -8,4 +8,12 @@
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>SrvUsuario</servlet-name>
+        <servlet-class>com.mycompany.pr02pc02.SrvUsuario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SrvUsuario</servlet-name>
+        <url-pattern>/SrvUsuario</url-pattern>
+    </servlet-mapping>
 </web-app>

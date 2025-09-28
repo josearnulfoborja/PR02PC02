@@ -22,6 +22,7 @@
        <button type="button" id="registrarse">Registrarse</button>
   </form>
   <div id="pantallaPractica" style="display:none;"></div>
+  <div id="resultado" style="color: green; margin-top: 20px;"></div>
   <script src="app.js"></script>
 </body>
 </html>
